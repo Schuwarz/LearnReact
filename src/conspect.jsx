@@ -2,10 +2,6 @@
 //      Начало тут
 // ===================================
 
-// Компоненты - js функции, возвращают разметку. Пишуться с большой буквы
-
-// export default - имеет главный компонент файла
-
 // В jsx нужно закрывать все теги, возвращает только 1 тег
 
 // В jsx css-классы объявляются через className
@@ -28,23 +24,23 @@ const products = [                            // Создали массив
 ];
 
 const listItems = products.map(product =>     // Перебрали массив
-  <li key={products.id}>                      
+  <li key={products.id}>
     {products.title}
   </li>                                       // У li атрибут key
-  );
+);
 
-  return (                                    // Вернули список
-    <ul>{listItems}</ul>
-  );
+return (                                    // Вернули список
+  <ul>{listItems}</ul>
+);
 
 // Можно объявлять функ обработчиков событий
 
 
 function MyButton() {
-  function handleClick() {alert('жопа');}
+  function handleClick() { alert('жопа'); }
 
   return (                                     // у handleClick не нужны ()
-    <button onClick={handleClick}>              
+    <button onClick={handleClick}>
       Click me
     </button>
   );
@@ -53,12 +49,12 @@ function MyButton() {
 
 // Состояние
 
-  import { useState } from 'react';
+import { useState } from 'react';
 
-  function MyButton() {
-    const [count, setCount] = useState(0);
-    ...
-  }
+function MyButton() {
+  const [count, setCount] = useState(0);
+  // ...
+}
 
 // useState Возвращает текущее состояние something и функ setSomething
 
@@ -66,7 +62,7 @@ function MyButton() {
 
 // Пропсы - информация передаваемая вниз или вверх компонентам
 
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function MyApp() {
 
@@ -88,4 +84,36 @@ function MyButton(count, onClick) {
   return (
     <button onClick={onClick}></button>
   )
+}
+
+// ===================================
+//      Ваш первый компонент
+// ===================================
+
+// React компоненты - js функ., возвращают разметку. Пишуться с большой буквы
+
+// export default - имеет главный компонент файла
+
+export default function Хуй() {
+  // return <img src="..." alt="Писюняра" />;
+  // или 
+  return (
+    <img
+      src="..."
+      alt="Писюняра"
+    />
+  )
+}
+
+// Далее можем использовать компонент
+
+export default function Галера() {
+  return (
+    <section>
+      <h1>Замечательные писюлинки</h1>
+      <Хуй />
+      <Хуй />
+      <Хуй />
+    </section>
+  );
 }

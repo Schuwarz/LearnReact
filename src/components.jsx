@@ -1,4 +1,5 @@
-export default function Хуй() {
-  return <div>Хуй</div>
+export default function Хуй(str) {
+  str = prompt('','')
+  return <div>{str}</div>
 }
 

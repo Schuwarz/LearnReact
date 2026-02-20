@@ -123,9 +123,9 @@ export default function Галера() {
 // ===================================
 
 // Три шага:
-  // 1. Создать файл
-  // 2. Экспортировать компонент из файла
-  // 3. Импортировать компонент в нужный файл
+// 1. Создать файл
+// 2. Экспортировать компонент из файла
+// 3. Импортировать компонент в нужный файл
 
 import Хуй from './components';
 
@@ -133,9 +133,73 @@ import Хуй from './components';
 // Лучше либо по умолчанию либо именованные.
 
 export function Хуй() {
-//...
+  //...
 }
 
 // Затем в нужном файле:
 
 import { Хуй } from './какой-то_путь'
+
+// ===================================
+//      Условный рендеринг
+// ===================================
+
+function Item({ name, isPacked }) {
+  if (isPacked) {
+    return <li className="item">{name} ✅</li>;
+    // return null; Eсли ничего не хотим возвращать. Исключение
+  }
+  return <li className="item">{name}</li>;
+}
+
+export default function PackingList() {
+  return (
+    <ul>
+      <Item
+        isPacked={true}
+        name="Пипка"
+      />
+      <Item
+        isPacked={false}
+        name="Попка"
+      />
+    </ul>
+  );
+}
+
+// DRY - Don't repeat yourself
+
+// Тернарный оператор ? :
+
+return (
+  <li className="item">
+    {isPacked ? name + ' ✅' : name}
+  </li>
+);
+
+// И &&
+
+return (
+  <li className="item">
+    {name} {isPacked && '✅'}
+  </li>
+);
+
+// С переменными
+
+function Item({ name, isPacked }) {
+  let itemContent = name;
+
+  if (isPacked) {
+    itemContent = name + ' ✅';
+  }
+
+  return (
+    <li className="item">
+      {itemContent}
+    </li>
+  );
+}
+
+// В React вы управляете логикой ветвления с помощью JavaScript.
+// Вы можете условно сохранить JSX в переменную и затем включить её в другой JSX с помощью фигурных скобок.

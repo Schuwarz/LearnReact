@@ -203,3 +203,82 @@ function Item({ name, isPacked }) {
 
 // В React вы управляете логикой ветвления с помощью JavaScript.
 // Вы можете условно сохранить JSX в переменную и затем включить её в другой JSX с помощью фигурных скобок.
+
+
+// ===================================
+//      Рендер списков
+// ===================================
+
+// 1. Массив данных
+
+const people = [
+  'Креола Кэтрин Джонсон (Creola Katherine Johnson): математик',
+  'Марио Молина (Mario José Molina-Pasquel Henríquez): химик',
+  'Мухаммад Абдус Салам (Mohammad Abdus Salam): физик',
+  'Перси Джулиан (Percy Lavon Julian): химик',
+  'Субраманьян Чандрасекар (Subrahmanyan Chandrasekhar): астрофизик'
+];
+
+// 2. Преобразуем в новый массив JSX-узлов
+
+const listItems = people.map(person => <li>{person}</li>);
+
+// 3. Возвращаем компонент
+
+// Фильтрация массивов
+
+const people = [{
+  id: 0,  // Используется в JSX в качестве ключа. Об этом далее.
+  name: 'Креола Кэтрин Джонсон (Creola Katherine Johnson)',
+  profession: 'математик',
+}, {
+  id: 1,
+  name: 'Марио Молина (Mario José Molina-Pasquel Henríquez)',
+  profession: 'химик',
+}, {
+  id: 2,
+  name: 'Мухаммад Абдус Салам (Mohammad Abdus Salam)',
+  profession: 'физик',
+}, {
+  id: 3,
+  name: 'Перси Джулиан (Percy Lavon Julian)',
+  profession: 'химик',
+}, {
+  id: 4,
+  name: 'Субраманьян Чандрасекар (Subrahmanyan Chandrasekhar)',
+  profession: 'астрофизик',
+}];
+
+// 1. Новый фильтрованный массив
+
+const химики = people.filter(person =>
+  person.profession === 'химик'
+);
+
+// 2. Преобразуем эл.
+
+const listItems = химики.map(person =>
+  <li>
+    <img
+      src={getImageUrl(person)}
+      alt={person.name}
+    />
+    <p>
+      <b>{person.name}:</b>
+      {' ' + person.profession}.
+      Достижение: {person.accomplishment}
+    </p>
+  </li>
+);
+
+// 3. Возвращаем компонент
+
+// Сохранение порядка элементов списка с помощью key
+// JSX-элементы, созданные внутри map() всегда должны иметь ключи!
+
+<li key={person.id}>...</li>
+
+// 1. Ключи должны быть уникальны
+// 2. Ключи не должны меняться
+
+// ?Почитать про Crypto: randomUUID() method

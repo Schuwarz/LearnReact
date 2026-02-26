@@ -282,3 +282,5 @@ const listItems = химики.map(person =>
 // 2. Ключи не должны меняться
 
 // ?Почитать про Crypto: randomUUID() method
+
+// тяжелый день...
